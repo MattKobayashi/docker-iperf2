@@ -12,7 +12,8 @@ RUN apk add --no-cache tar build-base \
 FROM alpine:3.12
 
 # Copy relevant compiled files to distribution image
-RUN adduser --system iperf2
+RUN adduser --system iperf2 \
+    && apk add --no-cache libgcc libstdc++
 COPY --from=buildenv /usr/local/bin/ /usr/local/bin/
 COPY --from=buildenv /usr/local/share/man/ /usr/local/share/man/
 
