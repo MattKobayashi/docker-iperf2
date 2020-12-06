@@ -1,6 +1,6 @@
 FROM alpine:3.12 as buildenv
 
-# Grab iperf2 from SOurceforge and compile
+# Grab iperf2 from Sourceforge and compile
 WORKDIR /iperf2
 RUN apk add --no-cache tar build-base \
     && wget -O - https://sourceforge.net/projects/iperf2/files/iperf-2.0.14a.tar.gz/download \
@@ -21,7 +21,7 @@ COPY --from=buildenv /usr/local/share/man/ /usr/local/share/man/
 USER iperf2
 
 # Set expose port and entrypoint
-EXPOSE 5201
+EXPOSE 5001
 ENTRYPOINT ["iperf"]
 
 LABEL maintainer="matthew@thompsons.id.au"
