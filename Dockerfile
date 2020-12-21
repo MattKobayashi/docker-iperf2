@@ -2,7 +2,8 @@ FROM alpine:3.12 as buildenv
 
 # Grab iperf2 from Sourceforge and compile
 WORKDIR /iperf2
-RUN apk add --no-cache tar build-base \
+RUN apk --no-cache upgrade \
+    && apk add --no-cache tar build-base \
     && wget -O - https://sourceforge.net/projects/iperf2/files/iperf-2.0.14a.tar.gz/download \
     | tar -xz --strip 1 \
     && ./configure \
