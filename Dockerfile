@@ -14,6 +14,7 @@ FROM alpine:3.13
 
 # Copy relevant compiled files to distribution image
 RUN adduser --system iperf2 \
+    && apk --no-cache upgrade \
     && apk add --no-cache libgcc libstdc++
 COPY --from=buildenv /usr/local/bin/ /usr/local/bin/
 COPY --from=buildenv /usr/local/share/man/ /usr/local/share/man/
