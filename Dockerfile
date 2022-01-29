@@ -1,4 +1,4 @@
-FROM alpine:3.14 as buildenv
+FROM alpine:3.15 as buildenv
 
 # Grab iperf2 from Sourceforge and compile
 WORKDIR /iperf2
@@ -10,7 +10,7 @@ RUN apk --no-cache upgrade \
     && make \
     && make install
 
-FROM alpine:3.14
+FROM alpine:3.15
 
 # Copy relevant compiled files to distribution image
 RUN adduser --system iperf2 \
