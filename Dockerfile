@@ -7,10 +7,9 @@ ENV IPERF2_URL=https://sourceforge.net/projects/iperf2/files/iperf-2.1.7.tar.gz/
 WORKDIR /iperf2
 RUN apk --no-cache upgrade \
     && apk add --no-cache tar build-base \
-    && wget -O - ${IPERF2_URL} \
-    && IPERF2_FILE="$(ls | grep iperf)" \
-    && echo "${IPERF2_SHA1SUM} ${IPERF2_FILE}" | sha1sum -c - \
-    && tar -xz --strip 1 ${IPERF2_FILE} \
+    && wget -O iperf2.tar.gz ${IPERF2_URL} \
+    && echo "${IPERF2_SHA1SUM} iperf2.tar.gz" | sha1sum -c - \
+    && tar -xz --strip 1 iperf2.tar.gz \
     && ./configure \
     && make \
     && make install
