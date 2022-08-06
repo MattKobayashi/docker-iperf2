@@ -10,7 +10,7 @@ RUN apk --no-cache upgrade \
     && apk add --no-cache tar build-base \
     && wget -O "$IPERF2_FILE" "$IPERF2_URL" \
     && echo "${IPERF2_SHA1SUM}  ${IPERF2_FILE}" | sha1sum -c - \
-    && tar -xz --strip 1 iperf2.tar.gz \
+    && tar -xz --strip-components=1 --file="$IPERF2_FILE" \
     && ./configure \
     && make \
     && make install
