@@ -1,7 +1,6 @@
 FROM alpine:3 as buildenv
 
-ENV IPERF2_FILE=iperf-2.1.7.tar.gz
-    IPERF2_URL=https://sourceforge.net/projects/iperf2/files/${IPERF2_FILE}/download
+ENV IPERF2_URL=https://sourceforge.net/projects/iperf2/files/iperf-2.1.7.tar.gz/download
     IPERF2_SHA1SUM=52f8a46c98776bbd4b9bd0c114fa18cdc0dc403f
 
 # Grab iperf2 from Sourceforge and compile
@@ -9,7 +8,8 @@ WORKDIR /iperf2
 RUN apk --no-cache upgrade \
     && apk add --no-cache tar build-base \
     && wget -O - ${IPERF2_URL} \
-    && echo "${IPERF2_SHA1SUM}  ${IPERF2_FILE}" | sha1sum -c - \
+    && IPERF2_FILE="$(ls | grep iperf)"
+    && echo "${IPERF2_SHA1SUM} ${IPERF2_FILE}" | sha1sum -c - \
     && tar -xz --strip 1 ${IPERF2_FILE} \
     && ./configure \
     && make \
