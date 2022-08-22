@@ -1,8 +1,8 @@
 FROM alpine:3 as buildenv
 
 ENV IPERF2_FILE=iperf2.tar.gz \
-    IPERF2_URL=https://sourceforge.net/projects/iperf2/files/iperf-2.1.7.tar.gz/download \
-    IPERF2_SHA1SUM=52f8a46c98776bbd4b9bd0c114fa18cdc0dc403f
+    IPERF2_URL=https://sourceforge.net/projects/iperf2/files/iperf-2.1.8.tar.gz/download \
+    IPERF2_SHA1SUM=7725efffc6ef46fe5247ee326c39e5fa2eadf1eb
 
 # Grab iperf2 from Sourceforge and compile
 WORKDIR /iperf2
